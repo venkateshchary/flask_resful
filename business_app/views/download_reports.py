@@ -19,7 +19,7 @@ def manager_required(fn):
     def wrapper(*args, **kwargs):
         verify_jwt_in_request()
         claims = get_jwt_identity()
-        if claims['role_name'] != 'customer':
+        if claims['role_name'] != 'manager':
             return 'managers only!', status.HTTP_403_FORBIDDEN
         else:
             return fn(*args, **kwargs)
